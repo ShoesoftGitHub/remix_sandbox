@@ -1,0 +1,47 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"author": "Shoesoft",
+			"kind": "dev",
+			"methods": {},
+			"title": "Pollable library",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/pollable_library_commented.sol": "PollableLibrary"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/pollable_library_commented.sol": {
+			"keccak256": "0xe6ad5ed430e46946f4e672ad5b2ac5d44e10cd1184efdbd208a29d9aa8a75e25",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://119e0c0be8326a6665fc8e1ad93adffb64f0ed7a9e0042238fe3a56ee24d5ada",
+				"dweb:/ipfs/QmTrTFuw1tDHDi5YZiXU7QaRPStBtMA8RGT1x3KBiMrM7F"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,182 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "notOwnerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "ownerAddress",
+						"type": "address"
+					}
+				],
+				"name": "notOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "ownerAddress",
+						"type": "address"
+					}
+				],
+				"name": "transferIsAlreadyOwner",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "onTransferOwnership",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "inAddress",
+						"type": "address"
+					}
+				],
+				"name": "isOwner",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "https://docs.openzeppelin.com/contracts/2.x/api/ownership This is a snippet for an ownable contract, that orients itself at the open zeppelin contract This is not the OpenZeppelin Ownable contract",
+			"errors": {
+				"notOwner(address,address)": [
+					{
+						"details": "This error gets thrown when an address is not the Owner"
+					}
+				],
+				"transferIsAlreadyOwner(address)": [
+					{
+						"details": "This error gets thrown when an address of an owner transfer is the same as the owner"
+					}
+				]
+			},
+			"events": {
+				"onTransferOwnership(address,address)": {
+					"details": "This event gets called when the ownership is transferred"
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"isOwner(address)": {
+					"details": "Returns true if an address is the Owner"
+				},
+				"renounceOwnership()": {
+					"details": "A function to renounce the ownership"
+				},
+				"transferOwnership(address)": {
+					"details": "A function to transfer the ownership"
+				}
+			},
+			"stateVariables": {
+				"owner": {
+					"details": "The owner address"
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ownable_commented.sol": "Ownable"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/ownable_commented.sol": {
+			"keccak256": "0x8ea0674d0cf594837ca9bd4ed354010ab1f36b60fb031baddbdefce07a5ac62d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://758ad0ba4d841b6b3d66bfde6bdefefc799bce76c5c44dacb0e810a8ba39dcca",
+				"dweb:/ipfs/QmXAiAcLb25DyatJDXtvWXjC5BgygHwWjcBmm8cnH1EznY"
+			]
+		}
+	},
+	"version": 1
+}

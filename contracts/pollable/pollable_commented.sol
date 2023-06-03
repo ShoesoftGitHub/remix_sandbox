@@ -5,71 +5,90 @@
 // At the end of the voting time, the option with the most votes is calculated.
 // Vote weight can be influenced by amount of tokens held of a specified type.
 
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.9.0;
-import "_snippets/ownable_commented.sol";
-import "_snippets/pollable_library_commented.sol";
+import "contracts/ownable/ownable_commented.sol";
+import "contracts/pollable/pollable_library_commented.sol";
 
 
-/// @title Voting with delegation.
-// The Pollable contract
-contract Pollable is Ownable
-{
-    // All current polls
+/// @title Pollable contract
+/// @author Shoesoft
+abstract contract Pollable is Ownable {
+    /**
+     * @dev All current polls
+     */
     PollableLibrary.Poll[] internal polls;
 
-    // Event that fires when a poll has been added
+    /**
+     * @dev Event that fires when a poll has been added
+     */
     event OnAddPoll(PollableLibrary.Poll poll);
 
-    // Event that fires when a poll has been removed
+    /**
+     * @dev Event that fires when a poll has been removed
+     */
     event OnRemovePoll(PollableLibrary.Poll poll);
 
-    // Event that fires when a poll option is added
+    /**
+     * @dev Event that fires when a poll option is added
+     */
     event OnAddPollOption(PollableLibrary.Poll poll, 
         PollableLibrary.PollOption option, address creator);
 
-    // Error that is thrown when a poll could not be found
+    /**
+     * @dev Error that is thrown when a poll could not be found
+     */
     error CannotFindPoll(bytes32 pollName);
 
-    // Error that is thrown when a poll option cannot be added
+    /**
+     * @dev Error that is thrown when a poll option cannot be added
+     */
     error CannotCreateOption(PollableLibrary.Poll poll, address creator);
 
-    // Returns a poll, for internal use
+    /**
+     * @dev Returns a poll, for internal use
+     */
     function getPollInternal(bytes32 pollName) internal returns (PollableLibrary.Poll storage) {
-        for(uint i = 0; i < polls.length; i++) {
-            if(polls[i].name == pollName) {
+        for (uint i = 0; i < polls.length; i++) {
+            if (polls[i].name == pollName) {
                 return polls[i];
             }
         }
         revert(CannotFindPoll({pollName: pollName}));
     }
 
-    // Returns a poll, for external use
+    /**
+     * @dev Returns a poll, for external use
+     */
     function getPoll(bytes32 pollName) external view returns (PollableLibrary.Poll) {
-        for(uint i = 0; i < polls.length; i++) {
-            if(polls[i].name == pollName) {
+        for (uint i = 0; i < polls.length; i++) {
+            if (polls[i].name == pollName) {
                 return polls[i];
             }
         }
         revert(CannotFindPoll({pollName: pollName}));
     }
 
-    // Adds a poll
+    /**
+     * @dev Adds a poll
+     */
     function addPoll(PollableLibrary.Poll poll) public onlyOwner {
         polls.push(poll);
         emit OnAddPoll(polls[polls.length - 1]);
     }
 
-    // Removes a poll by name
+    /**
+     * @dev Removes a poll by name
+     */
     function removePoll(bytes32 pollName) public onlyOwner {
         int pollIndex = -1;
-        for(uint i = 0; i < polls.length; i++) {
-            if(polls[i].name == pollName) {
+        for (uint i = 0; i < polls.length; i++) {
+            if (polls[i].name == pollName) {
                 pollIndex = i;
                 break;
             }
         }
-        if(pollIndex == -1) {
+        if (pollIndex == -1) {
             revert(CannotFindPoll({pollName: pollName}));
         } else {
             PollableLibrary.Poll memory removedPoll = polls[pollIndex];
@@ -82,13 +101,17 @@ contract Pollable is Ownable
         }
     }
 
-    // Sets a poll active or inactive
+    /**
+     * @dev Sets a poll active or inactive
+     */
     function setPollActive(bytes32 pollName, bool isActive) public onlyOwner {
         PollableLibrary.Poll storage poll = getPollInternal(pollName);
         poll.isActive = isActive;
     }
 
-    // Returns if an address can create an option on a poll
+    /**
+     * @dev Returns if an address can create an option on a poll
+     */
     function canAddressCreateOption(
         address creator, 
         PollableLibrary.Poll poll
@@ -105,7 +128,9 @@ contract Pollable is Ownable
     // TODO: Implement system where users can first vote on what options should be included in the vote
     // Or make this another poll?
 
-    // Adds a poll option to a poll
+    /**
+     * @dev Adds a poll option to a poll
+     */
     function addPollOption(
         bytes32 pollName, 
         PollableLibrary.PollOption option
@@ -113,7 +138,7 @@ contract Pollable is Ownable
         external
     {
         PollableLibrary.Poll storage poll = getPollInternal(pollName);
-        if(canAddressCreateOption(msg.sender, poll)) {
+        if (canAddressCreateOption(msg.sender, poll)) {
             poll.options.push(option);
             emit OnAddPollOption({poll: poll, option: option, creator: msg.sender});
         } else {
@@ -121,8 +146,10 @@ contract Pollable is Ownable
         }
     }
 
-    // Give a votee the right to vote on a Poll.
-    // May only be called by chairperson.
+    /**
+     * @dev Give a votee the right to vote on a Poll.
+     * May only be called by chairperson.
+     */
     function giveRightToVoteOnPoll(
         bytes32 pollName, 
         address voteeAddress
@@ -140,7 +167,9 @@ contract Pollable is Ownable
         poll.votees[voteeAddress].voteWeight = 1;
     }
 
-    // Delegate a voteWeight to another votee
+    /**
+     * @dev Delegate a voteWeight to another votee
+     */
     function delegateVote(address toVoteeAddress) external {
         // Assigns a reference to the caller votee
         PollableLibrary.PollVotee storage sender = votees[msg.sender];
@@ -176,8 +205,10 @@ contract Pollable is Ownable
         }
     }
 
-    /// Give a vote including delegated voteWeight
-    /// to an Option options[optionIndex].name.
+    /**
+     * @dev Give a vote including delegated voteWeight
+     * to an Option options[optionIndex].name.
+     */
     function vote(uint optionIndex) external {
         // Store the sender as a reference
         Votee storage sender = votees[msg.sender];
@@ -194,8 +225,10 @@ contract Pollable is Ownable
         options[optionIndex].voteCount += sender.voteWeight;
     }
 
-    /// @dev Computes the winning option taking all
-    /// previous votes into account and returns the winning option index.
+    /** 
+     * @dev Computes the winning option taking all
+     * previous votes into account and returns the winning option index.
+     */
     function calculateWinningOption() public view 
         returns (uint winningOptionIndex)
     {
@@ -210,16 +243,17 @@ contract Pollable is Ownable
         }
     }
 
-    // Calls calculateWinningOptions() to get the index
-    // of the winner contained in the options array and then
-    // returns the name of the winner
+    /**
+     * @dev Calls calculateWinningOptions() to get the index
+     * of the winner contained in the options array and then
+     * returns the name of the winner
+     */
     function winningOptionName() external view
         returns (bytes32 winningOptionName_)
     {
         winningOptionName_ = options[calculateWinningOption()].name;
     }
 
-    /// Create a new Poll to choose an Option
     constructor(bytes32[] memory optionNames) {
         chairperson = msg.sender;
         votees[chairperson].voteWeight = 1;
@@ -238,5 +272,4 @@ contract Pollable is Ownable
             );
         }
     }
-
 }
