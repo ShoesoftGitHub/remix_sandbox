@@ -1,6 +1,6 @@
 // The following contract has an automatic and transparent voting system.
 // A pollable contract can create polls.
-// The chariman of the contract will give rights to each address that can vote.
+// The chairman of the contract will give rights to each address that can vote.
 // An address can vote itself or delegate the vote to another address.
 // At the end of the voting time, the option with the most votes is calculated.
 // Vote weight can be influenced by amount of tokens held of a specified type.
@@ -15,9 +15,24 @@ import "contracts/pollable/pollable_library_commented.sol";
 /// @author Shoesoft
 abstract contract Pollable is Ownable {
     /**
+     * @dev Pollmasters are addresses that can create, alter and remove polls
+     */
+    address[] pollmasters;
+
+    /**
      * @dev All current polls
      */
     PollableLibrary.Poll[] internal polls;
+
+    /**
+     * @dev Fires when a pollmaster is added
+     */
+    event OnAddPollmaster(address pollmaster);
+
+    /**
+     * @dev Fires when a pollmaster is removed
+     */
+    event OnRemovePollmaster(address pollmaster);
 
     /**
      * @dev Event that fires when a poll has been added
@@ -30,7 +45,7 @@ abstract contract Pollable is Ownable {
     event OnRemovePoll(PollableLibrary.Poll poll);
 
     /**
-     * @dev Event that fires when a poll option is added
+     * @dev Fires when a poll option is added
      */
     event OnAddPollOption(PollableLibrary.Poll poll, 
         PollableLibrary.PollOption option, address creator);
@@ -44,6 +59,18 @@ abstract contract Pollable is Ownable {
      * @dev Error that is thrown when a poll option cannot be added
      */
     error CannotCreateOption(PollableLibrary.Poll poll, address creator);
+
+    /**
+     * @dev An only pollmaster modifier
+     */
+    modifier onlyPollmaster() {
+        if (!_isPollmaster(msg.sender)) {
+            revert notPollmaster({
+                notPollmasterAddress: msg.sender
+            });
+        }
+        _;
+    }
 
     /**
      * @dev Returns a poll, for internal use

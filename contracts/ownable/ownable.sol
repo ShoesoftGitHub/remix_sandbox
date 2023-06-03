@@ -18,17 +18,17 @@ abstract contract Ownable {
     /**
      * @dev This event gets called when the ownership is transferred
      */
-    event onTransferOwnership(address previousOwner, address newOwner);
+    event OnTransferOwnership(address previousOwner, address newOwner);
 
     /**
      * @dev This error gets thrown when an address is not the Owner
      */
-    error notOwner(address notOwnerAddress, address ownerAddress);
+    error NotOwner(address notOwnerAddress, address ownerAddress);
 
     /**
      * @dev This error gets thrown when an address of an owner transfer is the same as the owner
      */
-    error transferIsAlreadyOwner(address ownerAddress);
+    error TransferIsAlreadyOwner(address ownerAddress);
 
     /**
      * @dev An only owner modifier that makes it possible for functions
@@ -36,7 +36,7 @@ abstract contract Ownable {
      */
     modifier onlyOwner() {
         if (!_isOwner(msg.sender)) {
-            revert notOwner({
+            revert NotOwner({
                 notOwnerAddress: msg.sender,
                 ownerAddress: owner
             });
@@ -64,11 +64,11 @@ abstract contract Ownable {
      */
     function transferOwnership(address newOwner) public onlyOwner {
         if (_isOwner(newOwner)) {
-            revert transferIsAlreadyOwner({ ownerAddress: owner });
+            revert TransferIsAlreadyOwner({ ownerAddress: owner });
         }
         address previousOwner = owner;
         owner = newOwner;
-        emit onTransferOwnership(previousOwner, owner);
+        emit OnTransferOwnership(previousOwner, owner);
     }
 
     /**

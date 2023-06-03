@@ -6,6 +6,15 @@ pragma solidity ^0.8.2;
 /// @author Shoesoft
 library PollableLibrary {
     /**
+     * @dev The type of a poll
+     */
+    enum PollType { 
+        GENERAL, 
+        ADD_POLLMASTER, KEEP_POLLMASTER, REMOVE_POLLMASTER, 
+        APPROVE_CITIZEN, KEEP_CITIZEN, REMOVE_CITIZEN
+    }
+
+    /**
      * @dev The votee struct
      */
     struct PollVotee {

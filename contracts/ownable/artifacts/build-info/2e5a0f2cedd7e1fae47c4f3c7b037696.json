@@ -1,13 +1,13 @@
 {
-	"id": "b05c04d4f76b81e32a6488240dbb18a4",
+	"id": "2e5a0f2cedd7e1fae47c4f3c7b037696",
 	"_format": "hh-sol-build-info-1",
 	"solcVersion": "0.8.18",
 	"solcLongVersion": "0.8.18+commit.87f61d96",
 	"input": {
 		"language": "Solidity",
 		"sources": {
-			"contracts/ownable/ownable_commented.sol": {
-				"content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.2;\n\n\n/// @title Ownable contract\n/// @author Shoesoft\n/**\n * @dev https://docs.openzeppelin.com/contracts/2.x/api/ownership\n * This is a snippet for an ownable contract, that orients itself at the open zeppelin contract\n * This is not the OpenZeppelin Ownable contract\n */\nabstract contract Ownable {\n    /**\n     * @dev The owner address\n     */\n    address public owner;\n\n    /**\n     * @dev This event gets called when the ownership is transferred\n     */\n    event onTransferOwnership(address previousOwner, address newOwner);\n\n    /**\n     * @dev This error gets thrown when an address is not the Owner\n     */\n    error notOwner(address notOwnerAddress, address ownerAddress);\n\n    /**\n     * @dev This error gets thrown when an address of an owner transfer is the same as the owner\n     */\n    error transferIsAlreadyOwner(address ownerAddress);\n\n    /**\n     * @dev An only owner modifier that makes it possible for functions\n     * to be only called by the owner\n     */\n    modifier onlyOwner() {\n        if (!_isOwner(msg.sender)) {\n            revert notOwner({\n                notOwnerAddress: msg.sender,\n                ownerAddress: owner\n            });\n        }\n        _;\n    }\n\n    /** \n     * @dev Returns true if an address is the Owner\n     * Internal version with less gas fee\n     */\n    function _isOwner(address inAddress) internal view returns (bool) {\n        return inAddress == owner;\n    }\n\n    /**\n     * @dev Returns true if an address is the Owner\n     */\n    function isOwner(address inAddress) public view returns (bool) {\n        return inAddress == owner;\n    }\n\n    /**\n     * @dev A function to transfer the ownership\n     */\n    function transferOwnership(address newOwner) public onlyOwner {\n        if (_isOwner(newOwner)) {\n            revert transferIsAlreadyOwner({ ownerAddress: owner });\n        }\n        address previousOwner = owner;\n        owner = newOwner;\n        emit onTransferOwnership(previousOwner, owner);\n    }\n\n    /**\n     * @dev A function to renounce the ownership\n     */\n    function renounceOwnership() public onlyOwner {\n        if (!isOwner(0x0000000000000000000000000000000000000000)) {\n            transferOwnership(0x0000000000000000000000000000000000000000);\n        } else {\n            revert(\"The ownership has already been renounced.\");\n        }\n    }\n\n    constructor() {\n        // Set the Owner to the contract creator in the constructor\n        owner = msg.sender;\n    }\n}"
+			"contracts/ownable/ownable.sol": {
+				"content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.2;\n\n\n/// @title Ownable contract\n/// @author Shoesoft\n/**\n * @dev https://docs.openzeppelin.com/contracts/2.x/api/ownership\n * This is a snippet for an ownable contract, that orients itself at the open zeppelin contract\n * This is not the OpenZeppelin Ownable contract\n */\nabstract contract Ownable {\n    /**\n     * @dev The owner address\n     */\n    address public owner;\n\n    /**\n     * @dev This event gets called when the ownership is transferred\n     */\n    event OnTransferOwnership(address previousOwner, address newOwner);\n\n    /**\n     * @dev This error gets thrown when an address is not the Owner\n     */\n    error NotOwner(address notOwnerAddress, address ownerAddress);\n\n    /**\n     * @dev This error gets thrown when an address of an owner transfer is the same as the owner\n     */\n    error TransferIsAlreadyOwner(address ownerAddress);\n\n    /**\n     * @dev An only owner modifier that makes it possible for functions\n     * to be only called by the owner\n     */\n    modifier onlyOwner() {\n        if (!_isOwner(msg.sender)) {\n            revert NotOwner({\n                notOwnerAddress: msg.sender,\n                ownerAddress: owner\n            });\n        }\n        _;\n    }\n\n    /** \n     * @dev Returns true if an address is the Owner\n     * Internal version with less gas fee\n     */\n    function _isOwner(address inAddress) internal view returns (bool) {\n        return inAddress == owner;\n    }\n\n    /**\n     * @dev Returns true if an address is the Owner\n     */\n    function isOwner(address inAddress) public view returns (bool) {\n        return inAddress == owner;\n    }\n\n    /**\n     * @dev A function to transfer the ownership\n     */\n    function transferOwnership(address newOwner) public onlyOwner {\n        if (_isOwner(newOwner)) {\n            revert TransferIsAlreadyOwner({ ownerAddress: owner });\n        }\n        address previousOwner = owner;\n        owner = newOwner;\n        emit OnTransferOwnership(previousOwner, owner);\n    }\n\n    /**\n     * @dev A function to renounce the ownership\n     */\n    function renounceOwnership() public onlyOwner {\n        if (!isOwner(0x0000000000000000000000000000000000000000)) {\n            transferOwnership(0x0000000000000000000000000000000000000000);\n        } else {\n            revert(\"The ownership has already been renounced.\");\n        }\n    }\n\n    constructor() {\n        owner = msg.sender;\n    }\n}"
 			}
 		},
 		"settings": {
@@ -39,7 +39,7 @@
 	},
 	"output": {
 		"contracts": {
-			"contracts/ownable/ownable_commented.sol": {
+			"contracts/ownable/ownable.sol": {
 				"Ownable": {
 					"abi": [
 						{
@@ -55,7 +55,7 @@
 									"type": "address"
 								}
 							],
-							"name": "notOwner",
+							"name": "NotOwner",
 							"type": "error"
 						},
 						{
@@ -66,7 +66,7 @@
 									"type": "address"
 								}
 							],
-							"name": "transferIsAlreadyOwner",
+							"name": "TransferIsAlreadyOwner",
 							"type": "error"
 						},
 						{
@@ -85,7 +85,7 @@
 									"type": "address"
 								}
 							],
-							"name": "onTransferOwnership",
+							"name": "OnTransferOwnership",
 							"type": "event"
 						},
 						{
@@ -144,19 +144,19 @@
 					"devdoc": {
 						"details": "https://docs.openzeppelin.com/contracts/2.x/api/ownership This is a snippet for an ownable contract, that orients itself at the open zeppelin contract This is not the OpenZeppelin Ownable contract",
 						"errors": {
-							"notOwner(address,address)": [
+							"NotOwner(address,address)": [
 								{
 									"details": "This error gets thrown when an address is not the Owner"
 								}
 							],
-							"transferIsAlreadyOwner(address)": [
+							"TransferIsAlreadyOwner(address)": [
 								{
 									"details": "This error gets thrown when an address of an owner transfer is the same as the owner"
 								}
 							]
 						},
 						"events": {
-							"onTransferOwnership(address,address)": {
+							"OnTransferOwnership(address,address)": {
 								"details": "This event gets called when the ownership is transferred"
 							}
 						},
@@ -207,12 +207,12 @@
 							"transferOwnership(address)": "f2fde38b"
 						}
 					},
-					"metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"notOwnerAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"ownerAddress\",\"type\":\"address\"}],\"name\":\"notOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"ownerAddress\",\"type\":\"address\"}],\"name\":\"transferIsAlreadyOwner\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"onTransferOwnership\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"inAddress\",\"type\":\"address\"}],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"https://docs.openzeppelin.com/contracts/2.x/api/ownership This is a snippet for an ownable contract, that orients itself at the open zeppelin contract This is not the OpenZeppelin Ownable contract\",\"errors\":{\"notOwner(address,address)\":[{\"details\":\"This error gets thrown when an address is not the Owner\"}],\"transferIsAlreadyOwner(address)\":[{\"details\":\"This error gets thrown when an address of an owner transfer is the same as the owner\"}]},\"events\":{\"onTransferOwnership(address,address)\":{\"details\":\"This event gets called when the ownership is transferred\"}},\"kind\":\"dev\",\"methods\":{\"isOwner(address)\":{\"details\":\"Returns true if an address is the Owner\"},\"renounceOwnership()\":{\"details\":\"A function to renounce the ownership\"},\"transferOwnership(address)\":{\"details\":\"A function to transfer the ownership\"}},\"stateVariables\":{\"owner\":{\"details\":\"The owner address\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/ownable/ownable_commented.sol\":\"Ownable\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/ownable/ownable_commented.sol\":{\"keccak256\":\"0xca88a0eccc2b7b6dc4be6ee7c87c7ad8ca016a72a2995f1bf5cdd70454b1aa8a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://93ae13923e3b2c85fe85cd7ea61911fba1ad7ceab345a10d15f241348a69f082\",\"dweb:/ipfs/QmZb7qeCHrZSwB4BvyDx72fwT9ApNgEyePTfUeJTwKaVtf\"]}},\"version\":1}",
+					"metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"notOwnerAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"ownerAddress\",\"type\":\"address\"}],\"name\":\"NotOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"ownerAddress\",\"type\":\"address\"}],\"name\":\"TransferIsAlreadyOwner\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OnTransferOwnership\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"inAddress\",\"type\":\"address\"}],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"https://docs.openzeppelin.com/contracts/2.x/api/ownership This is a snippet for an ownable contract, that orients itself at the open zeppelin contract This is not the OpenZeppelin Ownable contract\",\"errors\":{\"NotOwner(address,address)\":[{\"details\":\"This error gets thrown when an address is not the Owner\"}],\"TransferIsAlreadyOwner(address)\":[{\"details\":\"This error gets thrown when an address of an owner transfer is the same as the owner\"}]},\"events\":{\"OnTransferOwnership(address,address)\":{\"details\":\"This event gets called when the ownership is transferred\"}},\"kind\":\"dev\",\"methods\":{\"isOwner(address)\":{\"details\":\"Returns true if an address is the Owner\"},\"renounceOwnership()\":{\"details\":\"A function to renounce the ownership\"},\"transferOwnership(address)\":{\"details\":\"A function to transfer the ownership\"}},\"stateVariables\":{\"owner\":{\"details\":\"The owner address\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/ownable/ownable.sol\":\"Ownable\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/ownable/ownable.sol\":{\"keccak256\":\"0x300189e405ac1fedf36044fcf2cc940a04162a3de3ee8ba5c8e0beb3ed322c03\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c805216e2520a557aac25c79d1ff448353c592639aff99cd0b5caaceb947dac2\",\"dweb:/ipfs/QmZYyoFJGUainbR2ZBj1eXBNALoLC6QZM9imibAs43rHwX\"]}},\"version\":1}",
 					"storageLayout": {
 						"storage": [
 							{
 								"astId": 5,
-								"contract": "contracts/ownable/ownable_commented.sol:Ownable",
+								"contract": "contracts/ownable/ownable.sol:Ownable",
 								"label": "owner",
 								"offset": 0,
 								"slot": "0",
@@ -236,9 +236,9 @@
 			}
 		},
 		"sources": {
-			"contracts/ownable/ownable_commented.sol": {
+			"contracts/ownable/ownable.sol": {
 				"ast": {
-					"absolutePath": "contracts/ownable/ownable_commented.sol",
+					"absolutePath": "contracts/ownable/ownable.sol",
 					"exportedSymbols": {
 						"Ownable": [
 							131
@@ -323,9 +323,9 @@
 										"src": "431:80:0",
 										"text": " @dev This event gets called when the ownership is transferred"
 									},
-									"eventSelector": "4153d7514911f7e2c139015099f1a2bdae47cb491bc80a1b7b2489d26b0131fe",
+									"eventSelector": "86cd014506c8c5ccd1c1edd8bdb2b4886a7efc6d52bfdb46bba56d6c0ce5ea08",
 									"id": 12,
-									"name": "onTransferOwnership",
+									"name": "OnTransferOwnership",
 									"nameLocation": "522:19:0",
 									"nodeType": "EventDefinition",
 									"parameters": {
@@ -402,9 +402,9 @@
 										"src": "589:79:0",
 										"text": " @dev This error gets thrown when an address is not the Owner"
 									},
-									"errorSelector": "983eefdf",
+									"errorSelector": "23295f0e",
 									"id": 19,
-									"name": "notOwner",
+									"name": "NotOwner",
 									"nameLocation": "679:8:0",
 									"nodeType": "ErrorDefinition",
 									"parameters": {
@@ -479,9 +479,9 @@
 										"src": "741:108:0",
 										"text": " @dev This error gets thrown when an address of an owner transfer is the same as the owner"
 									},
-									"errorSelector": "0a4e29c4",
+									"errorSelector": "33ae4386",
 									"id": 24,
-									"name": "transferIsAlreadyOwner",
+									"name": "TransferIsAlreadyOwner",
 									"nameLocation": "860:22:0",
 									"nodeType": "ErrorDefinition",
 									"parameters": {
@@ -670,7 +670,7 @@
 																		}
 																	],
 																	"id": 32,
-																	"name": "notOwner",
+																	"name": "NotOwner",
 																	"nodeType": "Identifier",
 																	"overloadedDeclarations": [],
 																	"referencedDeclaration": 19,
@@ -1113,7 +1113,7 @@
 																		}
 																	],
 																	"id": 79,
-																	"name": "transferIsAlreadyOwner",
+																	"name": "TransferIsAlreadyOwner",
 																	"nodeType": "Identifier",
 																	"overloadedDeclarations": [],
 																	"referencedDeclaration": 24,
@@ -1283,7 +1283,7 @@
 															}
 														],
 														"id": 93,
-														"name": "onTransferOwnership",
+														"name": "OnTransferOwnership",
 														"nodeType": "Identifier",
 														"overloadedDeclarations": [],
 														"referencedDeclaration": 12,
@@ -1660,7 +1660,7 @@
 									"body": {
 										"id": 129,
 										"nodeType": "Block",
-										"src": "2406:103:0",
+										"src": "2406:35:0",
 										"statements": [
 											{
 												"expression": {
@@ -1675,7 +1675,7 @@
 														"nodeType": "Identifier",
 														"overloadedDeclarations": [],
 														"referencedDeclaration": 5,
-														"src": "2484:5:0",
+														"src": "2416:5:0",
 														"typeDescriptions": {
 															"typeIdentifier": "t_address",
 															"typeString": "address"
@@ -1690,7 +1690,7 @@
 															"nodeType": "Identifier",
 															"overloadedDeclarations": [],
 															"referencedDeclaration": 4294967281,
-															"src": "2492:3:0",
+															"src": "2424:3:0",
 															"typeDescriptions": {
 																"typeIdentifier": "t_magic_message",
 																"typeString": "msg"
@@ -1701,16 +1701,16 @@
 														"isLValue": false,
 														"isPure": false,
 														"lValueRequested": false,
-														"memberLocation": "2496:6:0",
+														"memberLocation": "2428:6:0",
 														"memberName": "sender",
 														"nodeType": "MemberAccess",
-														"src": "2492:10:0",
+														"src": "2424:10:0",
 														"typeDescriptions": {
 															"typeIdentifier": "t_address",
 															"typeString": "address"
 														}
 													},
-													"src": "2484:18:0",
+													"src": "2416:18:0",
 													"typeDescriptions": {
 														"typeIdentifier": "t_address",
 														"typeString": "address"
@@ -1718,7 +1718,7 @@
 												},
 												"id": 128,
 												"nodeType": "ExpressionStatement",
-												"src": "2484:18:0"
+												"src": "2416:18:0"
 											}
 										]
 									},
@@ -1742,21 +1742,21 @@
 										"src": "2406:0:0"
 									},
 									"scope": 131,
-									"src": "2392:117:0",
+									"src": "2392:49:0",
 									"stateMutability": "nonpayable",
 									"virtual": false,
 									"visibility": "internal"
 								}
 							],
 							"scope": 132,
-							"src": "326:2185:0",
+							"src": "326:2117:0",
 							"usedErrors": [
 								19,
 								24
 							]
 						}
 					],
-					"src": "32:2479:0"
+					"src": "32:2411:0"
 				},
 				"id": 0
 			}

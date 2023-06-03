@@ -69,7 +69,7 @@
 					"type": "address"
 				}
 			],
-			"name": "notOwner",
+			"name": "NotOwner",
 			"type": "error"
 		},
 		{
@@ -80,7 +80,7 @@
 					"type": "address"
 				}
 			],
-			"name": "transferIsAlreadyOwner",
+			"name": "TransferIsAlreadyOwner",
 			"type": "error"
 		},
 		{
@@ -99,7 +99,7 @@
 					"type": "address"
 				}
 			],
-			"name": "onTransferOwnership",
+			"name": "OnTransferOwnership",
 			"type": "event"
 		},
 		{
