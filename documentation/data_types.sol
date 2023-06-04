@@ -1,7 +1,5 @@
 // Variables are declared like {type}{access modifier}{state mutability attribute}{storage type}{name}
 // Variable names start with a lower case letter by coding convention
-uint public constant myPublicConstUInt;
-uint storage myUInt;
 // Access modifier and state mutability attribute can be omitted.
 
 // An unsigned integer
@@ -74,3 +72,11 @@ uint memory myMemoryUInt;
 // The storage keyword can be used to explicitly say that a variable should be stored in storage
 // This can be used to make references
 uint storage myStorageUInt;
+
+// constant state variables need their value assigned at compile time
+uint public constant myPublicConstUInt = 1;
+// immutable state variables need their value assigned at least at construction
+uint public immutable myImmutableUInt;
+constructor() {
+    myImmutableUInt = 1;
+}
