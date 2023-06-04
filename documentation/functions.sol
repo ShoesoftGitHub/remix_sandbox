@@ -39,6 +39,10 @@ function myFunc(uint amount) external payable {}
 function myFunc(uint amount) external payable costs(1 ether) {}
 
 // A virtual function
-function myFunc() virtual public {}
+function myFunc() public virtual {}
 // A function override
-function myFunc() override public {}
+function myFunc() public override {}
+// The super keyword calls a the function implementation of a superior class
+function myFunc() public override {
+    super.myFunc();
+}
