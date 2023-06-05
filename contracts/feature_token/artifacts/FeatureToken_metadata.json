@@ -1,0 +1,46 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "This is a sample contract that combines a lot of features. This contract and its dependencies serve to demonstrate how those features work and how they are implemented. Features include: - ERC20 and DEX / Pancakeswap      - Adding and removing liquidity from a DEX      - Selling and buying tokens from a DEX      - Enabling and disabling those functions - Context - Ownable - Pausable - Whitelist / Blacklist - Mint and Burn - Taxes (also add to DEX LP) - Dividends (also in combination with a DEX) - Reflections - Timers - Vesting - Payment Splitting? - Voting - Roles - NFTs - Blind Auction - Permission to third parties - Flash Minting - Snapshots - Upgradable - Cross chain",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/feature_token/FeatureToken.sol": "FeatureToken"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/feature_token/FeatureToken.sol": {
+			"keccak256": "0xdf406506b4d0f940b4ee62e4ff0f1f378ecad37f26cccd8aa725ebcd25690fdf",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://188acd1d20a59cf1d48ed5e91190c1b5d84558df37a16bd7b64311c472c6d492",
+				"dweb:/ipfs/QmQjVroMpc5QTJB3U8QMMo2i6TNjLE7bX2sVFcPRHFzg7c"
+			]
+		}
+	},
+	"version": 1
+}
