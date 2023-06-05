@@ -23,7 +23,8 @@ pragma solidity ^0.8.2;
  * - Timers
  * - Vesting
  * - Payment Splitting?
- * - Voting
+ * - Voting, GovernorBravo
+ * - Proxy
  * - Roles
  * - NFTs
  * - Blind Auction
@@ -32,6 +33,7 @@ pragma solidity ^0.8.2;
  * - Snapshots
  * - Upgradable
  * - Cross chain
+ * - Clones
  */
 contract FeatureToken {
 }
