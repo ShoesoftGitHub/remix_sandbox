@@ -7,8 +7,8 @@
 
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.9.0;
-import "contracts/ownable/ownable_commented.sol";
-import "contracts/pollable/pollable_library_commented.sol";
+import "contracts/ownable/OwnableCommented.sol";
+import "contracts/pollable/PollableLibraryCommented.sol";
 
 
 /// @title Pollable contract
@@ -70,6 +70,25 @@ abstract contract Pollable is Ownable {
             });
         }
         _;
+    }
+
+    constructor(bytes32[] memory optionNames) {
+        chairperson = msg.sender;
+        votees[chairperson].voteWeight = 1;
+        // For each of the provided option names,
+        // create a new Option struct and add it
+        // to the end of the array.
+        for (uint i = 0; i < optionNames.length; i++) {
+            // Option({...}) creates a temporary
+            // Option object and options.push(...)
+            // appends it to the end of options.
+            options.push(
+                Option({
+                    name: optionNames[i],
+                    voteCount: 0
+                })
+            );
+        }
     }
 
     /**
@@ -279,24 +298,5 @@ abstract contract Pollable is Ownable {
         returns (bytes32 winningOptionName_)
     {
         winningOptionName_ = options[calculateWinningOption()].name;
-    }
-
-    constructor(bytes32[] memory optionNames) {
-        chairperson = msg.sender;
-        votees[chairperson].voteWeight = 1;
-        // For each of the provided option names,
-        // create a new Option struct and add it
-        // to the end of the array.
-        for (uint i = 0; i < optionNames.length; i++) {
-            // Option({...}) creates a temporary
-            // Option object and options.push(...)
-            // appends it to the end of options.
-            options.push(
-                Option({
-                    name: optionNames[i],
-                    voteCount: 0
-                })
-            );
-        }
     }
 }

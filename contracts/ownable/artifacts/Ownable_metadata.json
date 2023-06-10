@@ -150,7 +150,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/ownable/ownable_commented.sol": "Ownable"
+			"contracts/ownable/Ownable.sol": "Ownable"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -164,12 +164,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/ownable/ownable_commented.sol": {
-			"keccak256": "0xc3df52d968dbecd428c288bd54b93e0b57fa7179e049aa47bb1ace0195cae436",
+		"contracts/ownable/Ownable.sol": {
+			"keccak256": "0x300189e405ac1fedf36044fcf2cc940a04162a3de3ee8ba5c8e0beb3ed322c03",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cac0db5d8c6979e2b3f4db571403ededa11f67504801b2251af095c89fa7262d",
-				"dweb:/ipfs/QmWSmRjddk6kX6y5BA4cZmBC46cN44N4LXMLXsi95AExoX"
+				"bzz-raw://c805216e2520a557aac25c79d1ff448353c592639aff99cd0b5caaceb947dac2",
+				"dweb:/ipfs/QmZYyoFJGUainbR2ZBj1eXBNALoLC6QZM9imibAs43rHwX"
 			]
 		}
 	},
