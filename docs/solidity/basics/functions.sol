@@ -46,3 +46,4 @@ function myFunc() public override {}
 function myFunc() public override {
     super.myFunc();
 }
+// External functions cannot call super

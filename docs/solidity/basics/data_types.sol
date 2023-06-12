@@ -66,7 +66,7 @@ myUIntArray.pop();
 
 // https://stackoverflow.com/questions/33839154/in-ethereum-solidity-what-is-the-purpose-of-the-memory-keyword
 // The memory keyword can be used to explicitly say that a variable should be stored in memory
-// This can be used to make a struct, array or mapping be stored in memory since it is stored
+// This can be used to make a struct, array, mapping or string be stored in memory since it is stored
 // in storage by default.
 uint memory myMemoryUInt;
 // The storage keyword can be used to explicitly say that a variable should be stored in storage
