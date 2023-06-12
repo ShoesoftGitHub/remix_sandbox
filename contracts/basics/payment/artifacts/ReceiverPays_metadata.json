@@ -1,0 +1,86 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "payable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "nonce",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "claimPayment",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "shutdown",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "The concept of this contract is a system where a person can send a cryptographically signed message to another person off-chain. The other person then can use that message on this contract to receive a payment. The person to do the payments can deploy this contract and attach enough ether to it. scripts/basics/payment/create_signature.js is the JS interface to this contract.",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"shutdown()": {
+					"notice": "destroy the contract and reclaim the leftover funds."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/basics/payment/ReceiverPays.sol": "ReceiverPays"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/basics/payment/ReceiverPays.sol": {
+			"keccak256": "0x487b1ecde7ac025dca3df5207ff2dc464ca193e959cb203cfb92e3f63431a9ba",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://650fa3408da1a37792cc33cf13c64b4b947ebbbf9e42b38e2bb5c9aa44c85861",
+				"dweb:/ipfs/QmSG19UATn8fP1eEUofYzjKZxcYfZZwujXUhVtpzfp4isC"
+			]
+		}
+	},
+	"version": 1
+}
