@@ -1,0 +1,83 @@
+{
+	"id": "bad932aa8ae847a125b5ce85424e024c",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.18",
+	"solcLongVersion": "0.8.18+commit.87f61d96",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"docs/solidity/compiler/compiler_versions.sol": {
+				"content": "/*\r\nVersioning\r\n_______________________\r\nSolidity versions follow semantic versioning.\r\nPatch level releases with major release 0 are upwards compatible,\r\n0.x.y can be compiled with 0.x.z where z > y.\r\n\r\nNightly Builds\r\n_______________________\r\nNightly development builds are an option to try out new features,\r\nthey are not meant for production though.\r\n\r\nDeploy with Latest Version\r\n_______________________\r\nWhen deploying contracts the latest version should be used because\r\nbreaking changes, features and bug fixes are introduced regularly.\r\nThe 0.x version number is currently used to indicate this fast pace.\r\nhttps://semver.org/#spec-item-4\r\n*/"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			}
+		}
+	},
+	"output": {
+		"errors": [
+			{
+				"component": "general",
+				"errorCode": "1878",
+				"formattedMessage": "Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing \"SPDX-License-Identifier: <SPDX-License>\" to each source file. Use \"SPDX-License-Identifier: UNLICENSED\" for non-open-source code. Please see https://spdx.org for more information.\n--> docs/solidity/compiler/compiler_versions.sol\n\n",
+				"message": "SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing \"SPDX-License-Identifier: <SPDX-License>\" to each source file. Use \"SPDX-License-Identifier: UNLICENSED\" for non-open-source code. Please see https://spdx.org for more information.",
+				"severity": "warning",
+				"sourceLocation": {
+					"end": -1,
+					"file": "docs/solidity/compiler/compiler_versions.sol",
+					"start": -1
+				},
+				"type": "Warning"
+			},
+			{
+				"component": "general",
+				"errorCode": "3420",
+				"formattedMessage": "Warning: Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.18;\"\n--> docs/solidity/compiler/compiler_versions.sol\n\n",
+				"message": "Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.18;\"",
+				"severity": "warning",
+				"sourceLocation": {
+					"end": -1,
+					"file": "docs/solidity/compiler/compiler_versions.sol",
+					"start": -1
+				},
+				"type": "Warning"
+			}
+		],
+		"sources": {
+			"docs/solidity/compiler/compiler_versions.sol": {
+				"ast": {
+					"absolutePath": "docs/solidity/compiler/compiler_versions.sol",
+					"exportedSymbols": {},
+					"id": 1,
+					"nodeType": "SourceUnit",
+					"nodes": [],
+					"src": "651:0:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

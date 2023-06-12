@@ -1,0 +1,83 @@
+{
+	"id": "2d0d554cb60fd9d9d1d69035abcfd9ca",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.18",
+	"solcLongVersion": "0.8.18+commit.87f61d96",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"docs/solidity/compiler/remix.sol": {
+				"content": "/*\r\nUse\r\n_______________________\r\nRemix is recommended for deploying small contracts and learning Solidity.\r\nIt is also convenient to test nightly builds without installing multiple versions.\r\n\r\nInstallation\r\n_______________________\r\nRemix can be accessed online at https://remix.ethereum.org/ or\r\nit can be installed https://github.com/ethereum/remix-live/tree/gh-pages#readme.\r\n\r\nCommand-Line Compiler\r\n_______________________\r\nFor large contracts a command-line compiler is suggested, it also gives more \r\ncompilation options.\r\n*/"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			}
+		}
+	},
+	"output": {
+		"errors": [
+			{
+				"component": "general",
+				"errorCode": "1878",
+				"formattedMessage": "Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing \"SPDX-License-Identifier: <SPDX-License>\" to each source file. Use \"SPDX-License-Identifier: UNLICENSED\" for non-open-source code. Please see https://spdx.org for more information.\n--> docs/solidity/compiler/remix.sol\n\n",
+				"message": "SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing \"SPDX-License-Identifier: <SPDX-License>\" to each source file. Use \"SPDX-License-Identifier: UNLICENSED\" for non-open-source code. Please see https://spdx.org for more information.",
+				"severity": "warning",
+				"sourceLocation": {
+					"end": -1,
+					"file": "docs/solidity/compiler/remix.sol",
+					"start": -1
+				},
+				"type": "Warning"
+			},
+			{
+				"component": "general",
+				"errorCode": "3420",
+				"formattedMessage": "Warning: Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.18;\"\n--> docs/solidity/compiler/remix.sol\n\n",
+				"message": "Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.18;\"",
+				"severity": "warning",
+				"sourceLocation": {
+					"end": -1,
+					"file": "docs/solidity/compiler/remix.sol",
+					"start": -1
+				},
+				"type": "Warning"
+			}
+		],
+		"sources": {
+			"docs/solidity/compiler/remix.sol": {
+				"ast": {
+					"absolutePath": "docs/solidity/compiler/remix.sol",
+					"exportedSymbols": {},
+					"id": 1,
+					"nodeType": "SourceUnit",
+					"nodes": [],
+					"src": "533:0:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}
