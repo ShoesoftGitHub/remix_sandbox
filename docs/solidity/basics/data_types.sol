@@ -72,6 +72,9 @@ uint memory myMemoryUInt;
 // The storage keyword can be used to explicitly say that a variable should be stored in storage
 // This can be used to make references
 uint storage myStorageUInt;
+// calldata can be used for function arguments and behaves like memory
+function myFunction(address[] calldata addresses);
+// constructor parameters can not be of type calldata
 
 // constant state variables need their value assigned at compile time
 uint public constant myPublicConstUInt = 1;
