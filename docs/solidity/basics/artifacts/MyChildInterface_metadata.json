@@ -1,0 +1,63 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "MyError",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [],
+				"name": "MyEvent",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "myFunc",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"docs/solidity/basics/interfaces.sol": "MyChildInterface"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"docs/solidity/basics/interfaces.sol": {
+			"keccak256": "0x8f22f9f5c1530dfd353f60e88e184abf9ae42480c3c0440daa4df34be704c07d",
+			"urls": [
+				"bzz-raw://db38610e84aa106840a274fdee17c4cc95dc15c59cad5885d8256fece37da9a6",
+				"dweb:/ipfs/QmYykXcA5JXHoLE6W5rF4TRUKnjVqYL3KN33fygHijyEcZ"
+			]
+		}
+	},
+	"version": 1
+}

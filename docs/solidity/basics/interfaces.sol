@@ -1,5 +1,5 @@
 // https://www.tutorialspoint.com/solidity/solidity_interfaces.htm
-// Interfaces are abstract contracts that contain only virtual functions
+// Interfaces are abstract contracts that contain only virtual functions and no modifiers
 // An interface does not have a constructor or state variables
 interface MyInterface {
     // Functions can not be implemented and only be external
@@ -12,6 +12,13 @@ interface MyInterface {
     struct MyStruct {
         uint myUInt;
     }
+
+    // An interface can have events
+    event MyEvent();
+
+    // An interface can have errors
+    error MyError();
+
 }
 
 // Interfaces can inherit from interfaces
